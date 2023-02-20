@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.BadgedBox
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
@@ -35,6 +36,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TriStateCheckbox
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -48,7 +50,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.state.ToggleableState
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -73,7 +74,8 @@ class MainActivity : ComponentActivity() {
                          MyCheckBoxWithTextCompleted(CheckInfo("test", false) { it })
                          MyProgress()
                          MyProgressAdvance()*/
-                        MyCard()
+                       // MyCard()
+                        MyBadgeBox()
                     }
 
                 }
@@ -97,7 +99,9 @@ fun DefaultPreview() {
 
 @Composable
 fun MyBadgeBox() {
-    
+    BadgedBox(badge = { Text(text = "4")},modifier = Modifier.padding(16.dp)){
+        Icon(imageVector = Icons.Default.Star, contentDescription = "")
+    }
 }
 
 @Composable
