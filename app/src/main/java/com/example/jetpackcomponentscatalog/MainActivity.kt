@@ -1,12 +1,15 @@
 package com.example.jetpackcomponentscatalog
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +25,9 @@ import androidx.compose.material.Card
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
@@ -74,9 +80,34 @@ class MainActivity : ComponentActivity() {
                          MyCheckBoxWithTextCompleted(CheckInfo("test", false) { it })
                          MyProgress()
                          MyProgressAdvance()*/
-                       // MyCard()
-                        MyBadgeBox()
+                        // MyCard()
+                        /*MyBadgeBox()
+                        MyDivider()
+                        MyDropDownMenu()
+                        BasicSlider()
+                        AdvanceSlider()
+                        MyRangeSlider()*/
+                        var show by remember { mutableStateOf(false) }
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            Button(onClick = { show = true }) {
+                                Text(text = "Mostrar dialogo")
+                            }
+                        }
+                        /*MyAlertDialog(
+                            show = show,
+                            onDismiss = { show = false },
+                            onConfirm = { Log.i("Juan", "click") })*/
+                        /*MySimpleCustomDialog(
+                            show = show,
+                            onDismiss = { show = false })*/
+                        MyCustomDialago(
+                            show = show,
+                            onDismiss = { show = false })
+                        /*MyConfirmationDialog(
+                            show = show,
+                            onDismiss = { show = false })*/
                     }
+
 
                 }
             }
@@ -98,8 +129,50 @@ fun DefaultPreview() {
 }
 
 @Composable
+fun MyDropDownMenu() {
+    var selectedText by remember { mutableStateOf("") }
+    var expanded by remember { mutableStateOf(false) }
+    val desserts = listOf("Helado", "Chocolate", "Café", "Natillas")
+
+    Column(Modifier.padding(20.dp)) {
+        OutlinedTextField(
+            value = selectedText,
+            onValueChange = { selectedText = it },
+            enabled = false,
+            readOnly = true,
+            modifier = Modifier
+                .clickable { expanded = true }
+                .fillMaxWidth()
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            desserts.forEach { dessert ->
+                DropdownMenuItem(onClick = {
+                    expanded = false
+                    selectedText = dessert
+                }) {
+                    Text(text = dessert)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MyDivider() {
+    Divider(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    )
+}
+
+@Composable
 fun MyBadgeBox() {
-    BadgedBox(badge = { Text(text = "4")},modifier = Modifier.padding(16.dp)){
+    BadgedBox(badge = { Text(text = "4") }, modifier = Modifier.padding(16.dp)) {
         Icon(imageVector = Icons.Default.Star, contentDescription = "")
     }
 }
@@ -114,7 +187,7 @@ fun MyCard() {
         shape = MaterialTheme.shapes.small,
         backgroundColor = Color.Blue,
         contentColor = Color.Yellow,
-        border = BorderStroke(5.dp,Color.LightGray)
+        border = BorderStroke(5.dp, Color.LightGray)
 
 
     ) {
@@ -156,19 +229,19 @@ fun MyRadioButton() {
 @Composable
 fun MyRadioButtonList(name: String, onItemSelected: (String) -> Unit) {
     Column(Modifier.fillMaxWidth()) {
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(selected = name == "Aris", onClick = { onItemSelected("Aris") })
             Text(text = "Aris")
         }
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(selected = name == "David", onClick = { onItemSelected("David") })
             Text(text = "David")
         }
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(selected = name == "Fulanito", onClick = { onItemSelected("Fulanito") })
             Text(text = "Fulanito")
         }
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(selected = name == "Pepe", onClick = { onItemSelected("Pepe") })
             Text(text = "Pepe")
         }
