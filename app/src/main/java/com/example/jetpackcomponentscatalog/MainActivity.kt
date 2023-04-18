@@ -75,35 +75,36 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Column(modifier = Modifier.padding(10.dp)) {
-                        // MyText()
-                        /* MyTriStatusCheckBox()
+                        SimpleRecyclerView()
+                        /*// MyText()
+                        *//* MyTriStatusCheckBox()
                          MyCheckBoxWithTextCompleted(CheckInfo("test", false) { it })
                          MyProgress()
-                         MyProgressAdvance()*/
+                         MyProgressAdvance()*//*
                         // MyCard()
-                        /*MyBadgeBox()
+                        *//*MyBadgeBox()
                         MyDivider()
                         MyDropDownMenu()
                         BasicSlider()
                         AdvanceSlider()
-                        MyRangeSlider()*/
+                        MyRangeSlider()*//*
                         var show by remember { mutableStateOf(false) }
                         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                             Button(onClick = { show = true }) {
                                 Text(text = "Mostrar dialogo")
                             }
                         }
-                        /*MyAlertDialog(
+                        *//*MyAlertDialog(
                             show = show,
                             onDismiss = { show = false },
-                            onConfirm = { Log.i("Juan", "click") })*/
-                        /*MySimpleCustomDialog(
+                            onConfirm = { Log.i("Juan", "click") })*//*
+                        *//*MySimpleCustomDialog(
                             show = show,
-                            onDismiss = { show = false })*/
+                            onDismiss = { show = false })*//*
                         MyCustomDialago(
                             show = show,
                             onDismiss = { show = false })
-                        /*MyConfirmationDialog(
+                        *//*MyConfirmationDialog(
                             show = show,
                             onDismiss = { show = false })*/
                     }
